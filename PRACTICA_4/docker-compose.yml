@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+    # Contenedor de Base de Datos MongoDB
+    bdpractica4:
+        image: mongo
+        restart: always
+        container_name: bdpractica4
+    volumes:
+        - type: volumes
+          source: practica4-mongo-volumes
+          target: /data/db
+    ports:
+        - "27017"
+    environment:
+        MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+        MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
+        MONGO_INITDB_DATABASE: bdpractica4
+    # Contenedores de Server API
+networks: 
+    db_network:
+        driver: bridge
+    service_network:
+        driver: bridge
+    frontend_network:
+        driver: bridge
