@@ -6,18 +6,41 @@ services:
         image: mongo
         restart: always
         container_name: bdpractica4
-    volumes:
-        - type: volumes
-          source: practica4-mongo-volumes
-          target: /data/db
-    ports:
-        - "27017"
-    environment:
-        MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
-        MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
-        MONGO_INITDB_DATABASE: bdpractica4
-    # Contenedores de Server API
-networks: 
+        volumes:
+            - type: volumes
+            source: practica4-mongo-volumes
+            target: /data/db
+        ports:
+            - "27017"
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+            MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
+            MONGO_INITDB_DATABASE: ${MONGO_NAME}
+        networks:
+            - db_network
+    # Contenedores de Server API 
+    server1:
+        build: ./serverAPI/
+        ports:
+            - "${PORT_SERVERS}"
+        volumes:
+            - type: bind
+              source: ./src
+              target: ./src
+        environment:
+            USER_DB: ${MONGO_USER}
+            PASS_DB: ${MONGO_PASS}
+            NAME_DB: ${MONGO_NAME}  
+            SERVER_DB: bdpractica4
+            PORT_DB: 27017            # Puerto por defecto de MongoDB
+            PORT_API: ${PORT_SERVERS} # Puerto donde se levanta los web services
+            ID_API: ${SERVER1_ID}
+        networks: 
+            - service_network
+    #server2:
+    #server3:
+    # Contenedor de Frontend
+    networks: 
     db_network:
         driver: bridge
     service_network:
