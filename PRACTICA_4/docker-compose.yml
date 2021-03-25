@@ -7,9 +7,9 @@ services:
         restart: always
         container_name: bdpractica4
         volumes:
-            - type: volumes
-            source: practica4-mongo-volumes
-            target: /data/db
+            - type: volume
+              source: practica4-mongo-volume
+              target: /data/db
         ports:
             - "27017"
         environment:
@@ -21,12 +21,13 @@ services:
     # Contenedores de Server API 
     server1:
         build: ./serverAPI/
+        container_name: server1
         ports:
             - "${PORT_SERVERS}"
         volumes:
             - type: bind
-              source: ./src
-              target: ./src
+              source: ./serverAPI/src
+              target: /code/src
         environment:
             USER_DB: ${MONGO_USER}
             PASS_DB: ${MONGO_PASS}
@@ -37,13 +38,66 @@ services:
             ID_API: ${SERVER1_ID}
         networks: 
             - service_network
-    #server2:
-    #server3:
+            - db_network
+    server2:
+        build: ./serverAPI/
+        container_name: server2
+        ports:
+            - "${PORT_SERVERS}"
+        volumes:
+            - type: bind
+              source: ./serverAPI/src
+              target: /code/src
+        environment:
+            USER_DB: ${MONGO_USER}
+            PASS_DB: ${MONGO_PASS}
+            NAME_DB: ${MONGO_NAME}  
+            SERVER_DB: bdpractica4
+            PORT_DB: 27017            # Puerto por defecto de MongoDB
+            PORT_API: ${PORT_SERVERS} # Puerto donde se levanta los web services
+            ID_API: ${SERVER2_ID}
+        networks: 
+            - service_network
+            - db_network
+    server3:
+        build: ./serverAPI/
+        container_name: server3
+        ports:
+            - "${PORT_SERVERS}"
+        volumes:
+            - type: bind
+              source: ./serverAPI/src
+              target: /code/src
+        environment:
+            USER_DB: ${MONGO_USER}
+            PASS_DB: ${MONGO_PASS}
+            NAME_DB: ${MONGO_NAME}  
+            SERVER_DB: bdpractica4
+            PORT_DB: 27017            # Puerto por defecto de MongoDB
+            PORT_API: ${PORT_SERVERS} # Puerto donde se levanta los web services
+            ID_API: ${SERVER3_ID}
+        networks: 
+            - service_network
+            - db_network
     # Contenedor de Frontend
-    networks: 
+    nginx:
+        image: nginx:latest
+        volumes:
+          - ./loadBalancer/nginx.conf:/etc/nginx/nginx.conf:ro
+        depends_on:
+          - server1
+          - server2
+          - server3
+        ports:
+          - "4000:4000"
+        networks:
+          - service_network
+networks: 
     db_network:
         driver: bridge
     service_network:
         driver: bridge
     frontend_network:
         driver: bridge
+volumes:
+    practica4-mongo-volume:

@@ -1,7 +1,7 @@
 {
-    "name": "Servidor API",
+    "name": "apidb",
     "version": "1.0.0",
-    "description": "Microservicio de torneo",
+    "description": "server-api-p4",
     "main": "./src/app.js",
     "scripts": {
       "start": "node ./src/app.js"
