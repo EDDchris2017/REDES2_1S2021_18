@@ -9,13 +9,18 @@ const express = require("express")
 , bodyParser = require('body-parser');
 const app = express();
 const axios = require('axios').default
+const { dbConnection } = require('./db/config');
+
+// DB
+dbConnection();
 
 
 /**
  *  API SERVER
  */
+
 app.listen(port_server, () => {
-    console.log("Servicio ESB: " + port_server);
+    console.log("Servidor: " + id_server + " " + port_server);
 });
 app.use(bodyParser.json());
 
