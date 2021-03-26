@@ -49,12 +49,26 @@ const listarReportes = async (req, res) => {
             })
         }
 
-        return res.status(200).json({
+        res_array = []
+        dbReporte.forEach(e => {
+            x = {
+                carnet: e.carnet,
+                nombre: e.nombre,
+                curso: e.curso,
+                fecha: "03-26-2021",
+                cuerpo: e.cuerpo,
+                servidor: process.env.ID_API
+            }
+            res_array.push(x)
+        });
+
+        /*return res.status(200).json({
             ok: true,
             msg: "Se encontraron datos de reportes",
             servidor: process.env.ID_API,
             lista: dbReporte
-        })
+        })*/
+        return res.status(200).json(res_array)
         
     }catch(error){
         return res.status(500).json({
