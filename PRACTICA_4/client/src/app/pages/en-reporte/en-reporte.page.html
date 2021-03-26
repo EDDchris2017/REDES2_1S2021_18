@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>enReporte</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row justify-content-center align-items-center style="height: 90%">
+    <ion-col>
+      <ion-card>
+        <ion-card-content>
+          <ion-item>
+            <!--* Carnet del que envia el reporte-->
+            <ion-label position="floating">Carnet Estudiante</ion-label>
+            <ion-input #id></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <!--* Nombre del que envia el reporte-->
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input #name></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <!--* Curso/Proyecto Asignado-->
+            <ion-label position="floating">Curso/Proyecto</ion-label>
+            <ion-input #class></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <!-- * Textarea del cuerpo del reporte -->
+            <ion-label>Reporte:</ion-label>
+            <ion-textarea #body rows="6" cols="20" placeholder="Escribe tu reporte...">
+            </ion-textarea>
+          </ion-item>
+
+          <!-- * Boton para Enviar  -->
+          <ion-button (click)="obtenerDatos(id, name, class, body)">
+            <ion-icon name="send-outline"></ion-icon>
+            Enviar
+          </ion-button>
+          <!-- ! Boton para Ver reportes  -->
+          <p>Ver <strong><a href="reportes">reportes</a></strong></p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>
