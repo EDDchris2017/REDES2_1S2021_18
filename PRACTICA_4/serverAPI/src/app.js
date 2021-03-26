@@ -33,6 +33,6 @@ app.get('/status', function (req, res) {
 
 app.post('/enviar', crearReporte)
 
-app.get('/listar', listarReportes)
+app.post('/listar', listarReportes)
 
-app.get('/reporte/:id', verReporte)
+app.post('/reporte/:id', verReporte)
