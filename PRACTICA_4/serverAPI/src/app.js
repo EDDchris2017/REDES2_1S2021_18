@@ -10,6 +10,8 @@ const express = require("express")
 const app = express();
 const axios = require('axios').default
 const { dbConnection } = require('./db/config');
+// Controladores
+const { crearReporte, listarReportes, verReporte } = require('./controllers/reporte.controller');
 
 // DB
 dbConnection();
@@ -28,3 +30,9 @@ app.get('/status', function (req, res) {
     res.send('Servidor ' + id_server + " activo !!!");
     res.status(200)
 });
+
+app.post('/enviar', crearReporte)
+
+app.get('/listar', listarReportes)
+
+app.get('/reporte/:id', verReporte)
