@@ -19,8 +19,8 @@ console.log("SERVER BALANCER " + server_balancer)
 var url_balancer = server_balancer + ":" + puerto_balancer
 
 app.use(bodyParser.json());
-app.use(express.static('public'));
-//app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 /**
  *  API SERVER
@@ -30,18 +30,18 @@ app.listen(puerto_server, () => {
     console.log("Servidor Frontend");
 });
 
-app.use('*', (req, res) => {
+/*app.use('*', (req, res) => {
     res.sendFile(__dirname + '/public' );
-});
+});*/
 
 app.get('/status', function (req, res) {
     res.send('Servidor frontend activo !!!');
     res.status(200)
 });
 
-/*app.get('/', function (req, res){
+app.get('/', function (req, res){
     res.sendFile(path.join(__dirname + 'index.html')); 
-})*/
+})
 
 app.post('/enviar', async (req, res) => {
     enviarDatos('post', url_balancer + "/enviar", req.body,function(msg){

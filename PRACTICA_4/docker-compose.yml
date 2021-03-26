@@ -111,14 +111,12 @@ services:
             - service_network
             - frontend_network
     frontendng:
-        image: nginx:latest
+        build: ./frontng/
         container_name: frontendng
         volumes:
           - ./frontng/nginx.conf:/etc/nginx/nginx.conf:ro
         depends_on:
-          - server1
-          - server2
-          - server3
+          - nginx
         ports:
           - "${PORT_FRONTEND}:${PORT_FRONTEND}"
         networks:
