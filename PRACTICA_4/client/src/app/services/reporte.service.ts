@@ -13,11 +13,11 @@ export class ReporteService {
   guardarReporte(carnet, nombre, curso, cuerpo) {
     const data = {carnet, nombre, curso, cuerpo}
     //return [{ok:true, msg:'Reporte creado', carnet: '1111', nombre: 'nombre1', curso: 'redes2', cuerpo: 'hola ke ace', servidor: '201213283'}]
-    return this.http.post(`${this.API_URL}`,data);
+    return this.http.post(`${this.API_URL}enviar/`,data);
   }
 
   //Todo Recibo los datos del usuario
   obtenerReportes(){
-    return this.http.get(`${this.API_URL}`)
+    return this.http.get(`${this.API_URL}listar/`)
   }
 }
