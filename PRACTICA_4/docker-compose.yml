@@ -122,6 +122,26 @@ services:
         networks:
           - service_network
           - frontend_network
+    server4:
+        build: ./serverAPI/
+        container_name: server4
+        ports:
+            - "${PORT_SERVERS}"
+        volumes:
+            - type: bind
+              source: ./serverAPI/src
+              target: /code/src
+        environment:
+            USER_DB: ${MONGO_USER}
+            PASS_DB: ${MONGO_PASS}
+            NAME_DB: ${MONGO_NAME}  
+            SERVER_DB: bdpractica4
+            PORT_DB: 27017            # Puerto por defecto de MongoDB
+            PORT_API: ${PORT_SERVERS} # Puerto donde se levanta los web services
+            ID_API: ${SERVER4_ID}
+        networks: 
+            - service_network
+            - db_network
 networks: 
     db_network:
         driver: bridge
