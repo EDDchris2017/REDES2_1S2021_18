@@ -1,0 +1,8 @@
+Instalacion de node-pre-gyp 
+    -> npm install node-pre-gyp -g
+Instalacion de Grpc  tools
+    -> npm install -g grpc-tools
+    -> RUN npm i -g grpc-tools --unsafe-perm
+Compilar archivos cliente servidor con protoc
+    -> Estar dentro de la carpeta API
+    -> grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./ --grpc_out=grpc_js:./ ./proto/proyecto1.proto

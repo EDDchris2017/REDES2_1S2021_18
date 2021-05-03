@@ -1,0 +1,49 @@
+syntax= "proto3";
+package proyecto1;
+
+
+//********** mensajes Proyecto 2 **********
+message StatusReq {
+    string mensaje      = 1;
+}
+
+message StatusRes {
+    string mensaje      = 1;
+}
+
+// --- Crear Reporte ---
+message Reporte {
+    int32  carnet       = 1;
+    string nombre       = 2;
+    string curso        = 3;
+    string cuerpo       = 4;
+}
+
+message ReporteRecibido {
+    string msg           = 1;
+    int32  carnet        = 2;
+    string nombre        = 3;
+    string curso         = 4;
+    string cuerpo        = 5;
+    string fecha         = 6;
+    string servidor      = 7;
+}
+
+// --- Listar Reportes por carnet ---
+message ParamLista {
+    string carnet        = 1;
+}
+
+message ListaReportes {
+    repeated ReporteRecibido lista = 1;
+}
+
+service proyecto1 {
+    
+    // Respuesta
+    rpc Status          (StatusReq)     returns (StatusRes)         {}
+    //Crear Reporte
+    rpc CrearReporte    (Reporte)       returns (ReporteRecibido)   {}
+    //Listar Reportes
+    rpc ListarReportes  (ParamLista)    returns (ListaReportes)     {}
+}
