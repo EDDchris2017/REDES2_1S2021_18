@@ -12,7 +12,7 @@ var SERVER_PORT = 5000
  */
 function Status(call, callback) {
     var statusObj = new messages.StatusRes();
-    statusObj.setMensaje(call.request.getMensaje());
+    statusObj.setMensaje(call.request.getMensaje() + " desde Server GRPC");
     callback(null, statusObj);
 }
 
