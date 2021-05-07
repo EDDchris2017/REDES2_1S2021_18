@@ -2,13 +2,13 @@
  * CLIENTE GRPC API
  */
 
-var messages = require('../proto/proyecto1_pb');
-var services = require('../proto/proyecto1_grpc_pb');
+var messages = require('./proyecto1_pb');
+var services = require('./proyecto1_grpc_pb');
 var grpc = require('@grpc/grpc-js');
 
 // ========================== CONFIGURACION DEl CLIENT API =====================
-var IP_SERVER 	= "localhost"
-var PORT_SERVER = "5000" 
+var IP_SERVER 	= process.env.IP_SERVER
+var PORT_SERVER = process.env.PORT_SERVER 
 var client = undefined
 
 function main() {

@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+ api1:
+  build: ./
+  container_name: api1
+  ports:
+   - "3000:3000"
+  network_mode: "host"
+  volumes:
+   - type: bind
+     source: ./src
+     target: /code/src
+  environment:
+   PORT_API: 3000
+   ID_API: API__1
+   IP_SERVER: localhost
+   PORT_SERVER: 5000
+

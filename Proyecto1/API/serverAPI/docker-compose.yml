@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+ servidor1:
+  build: ./
+  container_name: servidor1
+  ports:
+   - "5000:5000"
+  network_mode: "host"
+  volumes:
+   - type: bind
+     source: ./src
+     target: /code/src
+  environment:
+   SERVER_ID: servidor1
+   SERVER_PORT: 5000
+

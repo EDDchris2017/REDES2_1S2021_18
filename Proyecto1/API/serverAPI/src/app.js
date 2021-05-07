@@ -1,10 +1,10 @@
-var messages = require('../proto/proyecto1_pb');
-var services = require('../proto/proyecto1_grpc_pb');
+var messages = require('./proyecto1_pb');
+var services = require('./proyecto1_grpc_pb');
 
 var grpc = require('@grpc/grpc-js');
 
 //Variables
-var SERVER_PORT = 5000
+var SERVER_PORT = process.env.SERVER_PORT
 
 
 /**
@@ -15,6 +15,10 @@ function Status(call, callback) {
     statusObj.setMensaje(call.request.getMensaje() + " desde Server GRPC");
     callback(null, statusObj);
 }
+
+/**
+ * Enviar Reporte 
+ */
 
 /**
  * Starts an RPC server that receives requests for the Greeter service at the

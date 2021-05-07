@@ -1,8 +1,8 @@
 // ********** CLIENTE API PROYECTO 1 REDES 2 **********
 
 // =========================== CONFIGURACION DE SERVIDOR =====================
-const id_server     = "API_1"
-const port_server   = 4000
+const id_server     = process.env.ID_API
+const port_server   = process.env.PORT_API
 
 // =========================== LEVANTAR APLICACION ===========================
 const express = require("express")
