@@ -19,6 +19,7 @@ message Reporte {
     string cuerpo       = 4;
 }
 
+// --- Listar Reportes ---
 message ReporteRecibido {
     string msg           = 1;
     int32  carnet        = 2;
@@ -38,6 +39,32 @@ message ListaReportes {
     repeated ReporteRecibido lista = 1;
 }
 
+// --- Manejo Asignaciones ---
+message Asistencia {
+    int32   carnet      = 1;
+    string  nombre      = 2;
+    string  nombreEvento = 3;
+    int32   idEvento     = 4;
+    string  extencion    = 5;
+    string  base64       = 6;    
+}
+
+// --- Respuesta Asignaciones ---
+message AsistenciaRecibido {
+    int32  carnet       = 1;
+    string nombre      = 2;
+    string nombreEvento = 3;
+    int32  idEvento     = 4;
+    string extencion    = 5;
+    string base64       = 6;
+    string fecha        = 7;
+    string servidor     = 8;
+}
+
+message ListaAsistencia {
+    repeated AsistenciaRecibido lista = 1;
+}
+
 service proyecto1 {
     
     // Respuesta
@@ -46,4 +73,8 @@ service proyecto1 {
     rpc CrearReporte    (Reporte)       returns (ReporteRecibido)   {}
     //Listar Reportes
     rpc ListarReportes  (ParamLista)    returns (ListaReportes)     {}
+    //Asitencia Reportes
+    rpc CrearAsistencia (Asistencia) returns (AsistenciaRecibido)   {}
+    //Lista asistencia
+    rpc ListarAsistencias (ParamLista) returns (ListaAsistencia)    {}
 }
