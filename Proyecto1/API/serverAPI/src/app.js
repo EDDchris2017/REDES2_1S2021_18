@@ -8,6 +8,9 @@ const { dbConnection } = require('./db/config');
 dbConnection();
 // Modulos de Datos
 const Reporte = require("./models/reporte.model");
+// Modulo de S3
+const {listarBuckets} = require("./imagenes/configs3");
+listarBuckets()
 
 
 //Variables
