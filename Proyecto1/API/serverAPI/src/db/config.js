@@ -6,9 +6,10 @@ const dbConnection = async () => {
     try {
         await mongoose.connect(url_mongo, {
             useNewUrlParser: true,
-            useUnifiedTopology: true ,
+            useUnifiedTopology: true, 
             useCreateIndex: true
         });
+        mongoose.connection.db.dropDatabase(function(err, result) {});
         console.log('MongoDB conectado!');
     } catch (error) {
         console.log(error);

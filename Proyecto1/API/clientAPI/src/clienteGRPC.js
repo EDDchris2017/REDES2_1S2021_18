@@ -31,12 +31,24 @@ function status(mensaje,callback) {
   	});
 }
 
-function crearReporte(mensaje, callback){
-
+function crearReporte(carnet, nombre, curso, cuerpo, callback){
+	var request = new messages.Reporte();
+	request.setCarnet(carnet)
+	request.setNombre(nombre)
+	request.setCurso(curso)
+	request.setCuerpo(cuerpo)
+	client.crearReporte(request, function(err, response) {
+		console.log("Respuesta de crearReporte GRPC")
+		callback(response)
+	})
 }
 
-function listarReportes(me, callback){
-
+function listarReportes(carnet, callback){
+	var request = new messages.ParamLista();
+	request.setCarnet(carnet)
+	client.listarReportes(request, function(err, response){
+		callback(response.getListaList())
+	})
 }
 
 function verReporte(me, callback){

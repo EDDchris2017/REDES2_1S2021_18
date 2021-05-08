@@ -7,6 +7,7 @@ const Reporte = require("./models/reporte.model");
 
 //Variables
 var SERVER_PORT = process.env.SERVER_PORT
+var SERVER_ID   = process.env.SERVER_ID
 
 
 /**
@@ -33,8 +34,15 @@ function CrearReporte(call, callback){
         // Guardar reporte en BD
         await nuevoReporte.save();
         // Enviar respuesta por GRPC
-        var statusObj = new messages.ReporteRecibido();
-
+        var res_grpc = new messages.ReporteRecibido();
+        res_grpc.setMsg("Reporte insertado con exito")
+        res_grpc.setCarnet(carnet)
+        res_grpc.setNombre(nombre)
+        res_grpc.setCurso(curso)
+        res_grpc.setCuerpo(cuerpo)
+        res_grpc.setFecha(new Date().toISOString())
+        res_grpc.setServidor(SERVER_ID)
+        callback(null, res_grpc);
     }catch(error){
         console.log("Error al crear nuevo reporte")
         console.log(error)
@@ -47,9 +55,9 @@ function CrearReporte(call, callback){
  */
 function main() {
     var server = new grpc.Server();
-    server.addService(services.proyecto1Service, {status: Status,CrearReporte: undefined, ListarReportes: undefined});
+    server.addService(services.proyecto1Service, {status: Status,CrearReporte: CrearReporte, ListarReportes: undefined});
     server.bindAsync('0.0.0.0:' + SERVER_PORT, grpc.ServerCredentials.createInsecure(), () => {
-		console.log("Iniciando Servidor GRPC")
+		console.log("Iniciando Servidor " + SERVER_ID + " GRPC" )
 		console.log("PUERTO: " + SERVER_PORT)
       	server.start();
     });

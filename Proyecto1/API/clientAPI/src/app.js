@@ -5,10 +5,10 @@ const id_server     = process.env.ID_API
 const port_server   = process.env.PORT_API
 
 // =========================== LEVANTAR APLICACION ===========================
-const express = require("express")
-, bodyParser = require('body-parser');
-const app = express();
-const axios = require('axios').default
+const express       = require("express")
+, bodyParser        = require('body-parser');
+const app           = express();
+const axios         = require('axios').default
 //const { dbConnection } = require('./db/config');
 // Controladores
 const { status, crearReporte, listarReportes, verReporte } = require('./reporte.controllers');
@@ -29,10 +29,10 @@ app.get('/status', function (req, res) {
 
 app.get('/status-grpc', status);
 
-/*
+
 app.post('/enviar', crearReporte)
 
 app.get('/listar', listarReportes)
-
+/*
 app.get('/reporte/:id', verReporte)
 */

@@ -14,4 +14,9 @@ services:
   environment:
    SERVER_ID: servidor1
    SERVER_PORT: 5000
+   USER_DB: admin
+   PASS_DB: admin
+   SERVER_DB: 127.0.0.1
+
+
 

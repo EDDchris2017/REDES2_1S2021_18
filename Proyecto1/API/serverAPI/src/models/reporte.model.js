@@ -1,6 +1,11 @@
 const { Schema, model } = require("mongoose");
 
 const reporteSchema = Schema({
+    id_r: {
+        type: String,
+        require: true,
+        unique: true
+    },
     carnet: {
         type: Number,
         required: true,
@@ -8,7 +13,6 @@ const reporteSchema = Schema({
     nombre: {
         type: String,
         required: true,
-        unique: true,
     },
     curso: {
         type: String,
@@ -17,8 +21,13 @@ const reporteSchema = Schema({
     cuerpo: {
         type: String,
         required: true
+    },
+    fecha: {
+        type: String,
+        required: true
     }
 });
 
 
-module.exports = model('Reporte', reporteSchema);
+var modelo = model('Reporte', reporteSchema);
+module.exports = modelo
