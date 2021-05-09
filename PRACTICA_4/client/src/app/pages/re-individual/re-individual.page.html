@@ -1,9 +1,57 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>reIndividual</ion-title>
+    <ion-title>Asistencia</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-row justify-content-center align-items-center style="height: 90%">
+    <ion-col>
+      <ion-card>
+        <ion-card-content>
+          <ion-item>
+            <!--* Carnet del que envia el reporte-->
+            <ion-label position="floating">Carnet Estudiante</ion-label>
+            <ion-input #id></ion-input>
+          </ion-item>
 
+          <ion-item>
+            <!--* Nombre del que envia el reporte-->
+            <ion-label position="floating">Nombre Estudiante</ion-label>
+            <ion-input #name></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <!--* Nombre del Evento-->
+            <ion-label position="floating">Nombre Evento</ion-label>
+            <ion-input #class></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <!--* id del Evento-->
+            <ion-label position="floating">Id Evento</ion-label>
+            <ion-input type="number" #idclass></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <!--* Imagen del Estudiante-->
+            <ion-label position="floating">Cargar Imagen</ion-label>
+            <ion-input type="file" (change)="fileChangeListener($event)"></ion-input>
+          </ion-item>
+
+          <ion-list>
+            <ion-img [src]="foto == 0 ? '/assets/ni.png' : cardImageBase64" alt="No Image"></ion-img>
+          </ion-list>
+
+          <!-- * Boton para Enviar  -->
+          <ion-button (click)="obtenerDatos(id, name, class, idclass)">
+            <ion-icon name="send-outline"></ion-icon>
+            Enviar
+          </ion-button>
+          <!-- ! Boton para Ver reportes  -->
+          <p>Ver <strong><a href="reportes-event">reportes</a></strong></p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
 </ion-content>

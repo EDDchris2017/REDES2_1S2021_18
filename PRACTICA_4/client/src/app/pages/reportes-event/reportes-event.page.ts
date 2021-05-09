@@ -1,21 +1,20 @@
-import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
-import { ReporteService } from '../../services/reporte.service'
+import { Component, OnInit } from '@angular/core';
 import { ToastController, AlertController } from '@ionic/angular';
+import { ReporteService } from '../../services/reporte.service'
 
 @Component({
-  selector: 'app-reportes',
-  templateUrl: './reportes.page.html',
-  styleUrls: ['./reportes.page.scss'],
+  selector: 'app-reportes-event',
+  templateUrl: './reportes-event.page.html',
+  styleUrls: ['./reportes-event.page.scss'],
 })
-export class ReportesPage implements OnInit {
-
+export class ReportesEventPage implements OnInit {
   items;
 
   constructor(private reporteServices: ReporteService,
     public toastController: ToastController,
     public alertController: AlertController) {
     this.initializeItems();
-  }
+   }
 
   ngOnInit() {
     this.initializeItems();
@@ -53,7 +52,7 @@ export class ReportesPage implements OnInit {
   }
 
   async initializeItems() {
-    this.reporteServices.obtenerReportes().subscribe(
+    this.reporteServices.obtenerReportesAsistencia().subscribe(
       res => {
         console.log(res);
         this.items = res;
@@ -83,12 +82,13 @@ export class ReportesPage implements OnInit {
   }
 
   getReportes() {
-    this.reporteServices.obtenerReportes().subscribe(
+    this.reporteServices.obtenerReportesAsistencia().subscribe(
       res => {
         console.log(res)
       },
       err => this.presentToast("Error al enviar Reporte")
     );
   }
+
 
 }

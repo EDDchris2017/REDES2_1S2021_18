@@ -11,13 +11,15 @@
   </ion-button>
   <div text-center>
     <h1 text-center>Carnet?</h1>
-    <a href="en-reporte">Enviar nuevo Reporte</a>
+    <a href="re-individual">Enviar nuevo Reporte</a>
     <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
     <ion-list>
       <ion-list-header lines="inset">
         <ion-label>Carnet</ion-label>
         <ion-label>Nombre</ion-label>
-        <ion-label>Proyecto</ion-label>
+        <ion-label>Nombre_Evento</ion-label>
+        <ion-label>ID Evento</ion-label>
+        <ion-label>Foto</ion-label>
         <ion-label>Fecha</ion-label>
         <ion-label>Servidor</ion-label>
         <ion-label>Accion</ion-label>
@@ -25,7 +27,11 @@
       <ion-item *ngFor="let item of items">
         <ion-label>{{ item.carnet }}</ion-label>
         <ion-label>{{ item.nombre }}</ion-label>
-        <ion-label>{{ item.curso }}</ion-label>
+        <ion-label>{{ item.nombreEvento }}</ion-label>
+        <ion-label>{{ item.idEvento }}</ion-label>
+        <ion-thumbnail slot="start">
+          <ion-img [src]="item.base64"></ion-img>
+        </ion-thumbnail>
         <ion-label>{{ item.fecha }}</ion-label>
         <ion-label>{{ item.servidor }}</ion-label>
         <ion-label>
