@@ -1,9 +1,9 @@
 version: "3.8"
 
 services:
- servidor2:
+ servidor1:
   build: ./
-  container_name: servidor2
+  container_name: servidor1
   ports:
    - "6000:6000"
   network_mode: "host"
@@ -12,9 +12,11 @@ services:
      source: ./src
      target: /code/src
   environment:
-    SERVER_ID: servidor2
-    SERVER_PORT: 6000
-    USER_DB: admin
-    PASS_DB: admin
-    SERVER_DB: 50.0.30.134
+   SERVER_ID: servidor1
+   SERVER_PORT: 6000
+   USER_DB: admin
+   PASS_DB: admin
+   SERVER_DB: 50.0.30.134
+
+
 

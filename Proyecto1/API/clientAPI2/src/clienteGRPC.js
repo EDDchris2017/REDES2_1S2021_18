@@ -31,16 +31,51 @@ function status(mensaje,callback) {
   	});
 }
 
-function crearReporte(mensaje, callback){
-
+function crearReporte(carnet, nombre, curso, cuerpo, callback){
+	var request = new messages.Reporte();
+	request.setCarnet(carnet)
+	request.setNombre(nombre)
+	request.setCurso(curso)
+	request.setCuerpo(cuerpo)
+	client.crearReporte(request, function(err, response) {
+		console.log("Respuesta de crearReporte GRPC")
+		callback(response)
+	})
 }
 
-function listarReportes(me, callback){
-
+function listarReportes(carnet, callback){
+	var request = new messages.ParamLista();
+	request.setCarnet(carnet)
+	client.listarReportes(request, function(err, response){
+		callback(response.getListaList())
+	})
 }
 
 function verReporte(me, callback){
 
+}
+
+function crearAsistencia(carnet, nombre, nombreEvento,
+		idEvento, extencion, base64, callback){
+	var req = new messages.Asistencia();
+	req.setCarnet(carnet)
+	req.setNombre(nombre)
+	req.setNombreevento(nombreEvento)
+	req.setIdevento(idEvento)
+	req.setExtencion(extencion)
+	req.setBase64(base64)
+	client.crearAsistencia(req, function(err, response){
+		console.log("Respuesta Asignacion GRPC")
+		callback(response)
+	})
+}
+
+function listarAsistencias(carnet, callback){
+	var request = new messages.ParamLista();
+	request.setCarnet(carnet)
+	client.listarAsistencias(request, function(err, response){
+		callback(response.getListaList())
+	})
 }
 
 module.exports = 
@@ -48,5 +83,8 @@ module.exports =
 	status:status,
 	crearReporte: crearReporte,
 	listarReportes: listarReportes,
-	verReporte: verReporte
+	verReporte: verReporte,
+	crearAsistencia: crearAsistencia,
+	listarAsistencias: listarAsistencias
+	
 }

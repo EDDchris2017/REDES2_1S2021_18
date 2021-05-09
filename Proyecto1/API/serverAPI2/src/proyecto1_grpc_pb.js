@@ -4,6 +4,39 @@
 var grpc = require('@grpc/grpc-js');
 var proto_proyecto1_pb = require('./proyecto1_pb.js');
 
+function serialize_proyecto1_Asistencia(arg) {
+  if (!(arg instanceof proto_proyecto1_pb.Asistencia)) {
+    throw new Error('Expected argument of type proyecto1.Asistencia');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_proyecto1_Asistencia(buffer_arg) {
+  return proto_proyecto1_pb.Asistencia.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_proyecto1_AsistenciaRecibido(arg) {
+  if (!(arg instanceof proto_proyecto1_pb.AsistenciaRecibido)) {
+    throw new Error('Expected argument of type proyecto1.AsistenciaRecibido');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_proyecto1_AsistenciaRecibido(buffer_arg) {
+  return proto_proyecto1_pb.AsistenciaRecibido.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_proyecto1_ListaAsistencia(arg) {
+  if (!(arg instanceof proto_proyecto1_pb.ListaAsistencia)) {
+    throw new Error('Expected argument of type proyecto1.ListaAsistencia');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_proyecto1_ListaAsistencia(buffer_arg) {
+  return proto_proyecto1_pb.ListaAsistencia.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_proyecto1_ListaReportes(arg) {
   if (!(arg instanceof proto_proyecto1_pb.ListaReportes)) {
     throw new Error('Expected argument of type proyecto1.ListaReportes');
@@ -107,6 +140,30 @@ listarReportes: {
     requestDeserialize: deserialize_proyecto1_ParamLista,
     responseSerialize: serialize_proyecto1_ListaReportes,
     responseDeserialize: deserialize_proyecto1_ListaReportes,
+  },
+  // Asitencia Reportes
+crearAsistencia: {
+    path: '/proyecto1.proyecto1/CrearAsistencia',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_proyecto1_pb.Asistencia,
+    responseType: proto_proyecto1_pb.AsistenciaRecibido,
+    requestSerialize: serialize_proyecto1_Asistencia,
+    requestDeserialize: deserialize_proyecto1_Asistencia,
+    responseSerialize: serialize_proyecto1_AsistenciaRecibido,
+    responseDeserialize: deserialize_proyecto1_AsistenciaRecibido,
+  },
+  // Lista asistencia
+listarAsistencias: {
+    path: '/proyecto1.proyecto1/ListarAsistencias',
+    requestStream: false,
+    responseStream: false,
+    requestType: proto_proyecto1_pb.ParamLista,
+    responseType: proto_proyecto1_pb.ListaAsistencia,
+    requestSerialize: serialize_proyecto1_ParamLista,
+    requestDeserialize: deserialize_proyecto1_ParamLista,
+    responseSerialize: serialize_proyecto1_ListaAsistencia,
+    responseDeserialize: deserialize_proyecto1_ListaAsistencia,
   },
 };
 

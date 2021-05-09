@@ -5,13 +5,13 @@ const id_server     = process.env.ID_API
 const port_server   = process.env.PORT_API
 
 // =========================== LEVANTAR APLICACION ===========================
-const express = require("express")
-, bodyParser = require('body-parser');
-const app = express();
-const axios = require('axios').default
+const express       = require("express")
+, bodyParser        = require('body-parser');
+const app           = express();
+const axios         = require('axios').default
 //const { dbConnection } = require('./db/config');
 // Controladores
-const { status, crearReporte, listarReportes, verReporte } = require('./reporte.controllers');
+const { status, crearReporte, listarReportes, verReporte, CrearAsistencia, ListarAsistencias } = require('./reporte.controllers');
 
 /**
  *  API SERVER
@@ -29,10 +29,14 @@ app.get('/status', function (req, res) {
 
 app.get('/status-grpc', status);
 
+
+app.post('/data', crearReporte)
+
+app.get('/reporte', listarReportes)
+
+app.post('/evento', CrearAsistencia)
+
+app.get('/evento', ListarAsistencias)
 /*
-app.post('/enviar', crearReporte)
-
-app.get('/listar', listarReportes)
-
 app.get('/reporte/:id', verReporte)
 */
