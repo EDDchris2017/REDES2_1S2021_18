@@ -104,7 +104,7 @@ async function CrearAsistencia(call, callback){
     let fecha         = new Date().toISOString();
     try{
         // Guardar imagen en S3
-        insertarImagen(base64, extencion, function(ruta){
+        insertarImagen(base64, extencion, async function(ruta){
             if(ruta) base64 = ruta
             else base64 = "error imagen"
             // Creando nueva Asistencia
