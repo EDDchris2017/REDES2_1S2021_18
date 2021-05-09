@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+ api2:
+  build: ./
+  container_name: api2
+  ports:
+   - "2000:2000"
+  network_mode: "host"
+  volumes:
+   - type: bind
+     source: ./src
+     target: /code/src
+  environment:
+   PORT_API: 2000
+   ID_API: API__2
+   IP_SERVER: 50.0.30.168
+   PORT_SERVER: 6000
+

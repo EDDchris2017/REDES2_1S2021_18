@@ -1,0 +1,22 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Cliente y Servidor API Proyecto 1 REDES 2",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.1.0",
+    "@grpc/proto-loader": "^0.5.0",
+    "async": "^1.5.2",
+    "aws-sdk": "^2.903.0",
+    "axios": "^0.20.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "google-protobuf": "^3.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.6.1",
+    "minimist": "^1.2.0",
+    "mongoose": "^5.12.0",
+    "uuid": "^8.3.2"
+  },
+  "author": "",
+  "license": "ISC"
+}
