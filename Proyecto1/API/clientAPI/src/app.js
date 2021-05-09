@@ -11,7 +11,7 @@ const app           = express();
 const axios         = require('axios').default
 //const { dbConnection } = require('./db/config');
 // Controladores
-const { status, crearReporte, listarReportes, verReporte } = require('./reporte.controllers');
+const { status, crearReporte, listarReportes, verReporte, CrearAsistencia, ListarAsistencias } = require('./reporte.controllers');
 
 /**
  *  API SERVER
@@ -30,9 +30,13 @@ app.get('/status', function (req, res) {
 app.get('/status-grpc', status);
 
 
-app.post('/enviar', crearReporte)
+app.post('/data', crearReporte)
 
-app.get('/listar', listarReportes)
+app.get('/reporte', listarReportes)
+
+app.post('/evento', CrearAsistencia)
+
+app.get('/evento', ListarAsistencias)
 /*
 app.get('/reporte/:id', verReporte)
 */

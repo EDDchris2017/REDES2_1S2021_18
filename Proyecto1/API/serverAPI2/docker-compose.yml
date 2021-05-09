@@ -12,6 +12,9 @@ services:
      source: ./src
      target: /code/src
   environment:
-   SERVER_ID: servidor2
-   SERVER_PORT: 6000
+    SERVER_ID: servidor2
+    SERVER_PORT: 6000
+    USER_DB: admin
+    PASS_DB: admin
+    SERVER_DB: 50.0.30.134
 

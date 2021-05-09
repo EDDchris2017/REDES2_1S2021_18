@@ -16,7 +16,7 @@ services:
    SERVER_PORT: 5000
    USER_DB: admin
    PASS_DB: admin
-   SERVER_DB: 127.0.0.1
+   SERVER_DB: 50.0.30.134
 
 
 

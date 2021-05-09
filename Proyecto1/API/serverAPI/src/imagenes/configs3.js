@@ -1,3 +1,5 @@
+const { v4: uuidv4 } = require('uuid');
+
 // Load the AWS SDK for Node.js
 var AWS = require('aws-sdk');
 // Set the region 
@@ -17,7 +19,30 @@ const listarBuckets = async () => {
     });
 }
 
+
+const insertarImagen = (base64,extencion, callback) => {
+	let buf = Buffer.from(base64, 'base64')
+	var params = {
+		Bucket: "proyectog18",
+		Key: uuidv4(), 
+		Body: buf,
+		ContentEncoding: 'base64',
+		ContentType: 'image/'+extencion,
+		ACL: 'public-read-write',
+	};
+	s3.upload(params, function(err, data){
+		if(err){
+			console.log("Error en guardar Imagen S3")
+			callback(undefined)
+		} else {
+			callback(data.Location)
+		}	
+	});
+}
+
+
 module.exports = {
-    listarBuckets
+	listarBuckets,
+	insertarImagen
 }
 

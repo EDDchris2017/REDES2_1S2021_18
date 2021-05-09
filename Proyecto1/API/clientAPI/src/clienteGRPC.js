@@ -55,10 +55,36 @@ function verReporte(me, callback){
 
 }
 
+function crearAsistencia(carnet, nombre, nombreEvento,
+		idEvento, extencion, base64, callback){
+	var req = new messages.Asistencia();
+	req.setCarnet(carnet)
+	req.setNombre(nombre)
+	req.setNombreevento(nombreEvento)
+	req.setIdevento(idEvento)
+	req.setExtencion(extencion)
+	req.setBase64(base64)
+	client.crearAsistencia(req, function(err, response){
+		console.log("Respuesta Asignacion GRPC")
+		callback(response)
+	})
+}
+
+function listarAsistencias(carnet, callback){
+	var request = new messages.ParamLista();
+	request.setCarnet(carnet)
+	client.listarAsistencias(request, function(err, response){
+		callback(response.getListaList())
+	})
+}
+
 module.exports = 
 {
 	status:status,
 	crearReporte: crearReporte,
 	listarReportes: listarReportes,
-	verReporte: verReporte
+	verReporte: verReporte,
+	crearAsistencia: crearAsistencia,
+	listarAsistencias: listarAsistencias
+	
 }
