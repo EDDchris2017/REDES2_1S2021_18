@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
- servidor1:
+ servidor2:
   build: ./
   container_name: servidor2
   ports:
