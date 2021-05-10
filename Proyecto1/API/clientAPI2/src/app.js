@@ -20,7 +20,9 @@ const { status, crearReporte, listarReportes, verReporte, CrearAsistencia, Lista
 app.listen(port_server, () => {
     console.log("Client API: " + id_server + " \nPUERTO:" + port_server);
 });
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 app.get('/status', function (req, res) {
     res.send('Servidor ' + id_server + " activo !!!");
