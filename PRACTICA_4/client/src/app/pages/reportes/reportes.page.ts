@@ -57,6 +57,7 @@ export class ReportesPage implements OnInit {
       res => {
         console.log(res);
         this.items = res;
+        this.items = this.items.reverse();
       },
       err => console.log(err)
     );

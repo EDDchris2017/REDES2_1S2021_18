@@ -8,6 +8,10 @@
   <ion-row justify-content-center align-items-center style="height: 90%">
     <ion-col>
       <ion-card>
+        <p>Ver <strong><a href="reportes-event">Asistencias</a></strong></p>
+        <p>Enviar <strong><a href="en-reporte">Reporte</a></strong></p>
+      </ion-card>
+      <ion-card>
         <ion-card-content>
           <ion-item>
             <!--* Carnet del que envia el reporte-->
@@ -40,7 +44,8 @@
           </ion-item>
 
           <ion-list>
-            <ion-img [src]="foto == 0 ? '/assets/ni.png' : cardImageBase64" alt="No Image"></ion-img>
+            <ion-img style="width: 100px; height: 100px;" [src]="foto == 0 ? '/assets/ni.png' : cardImageBase64"
+              alt="No Image"></ion-img>
           </ion-list>
 
           <!-- * Boton para Enviar  -->
@@ -49,7 +54,7 @@
             Enviar
           </ion-button>
           <!-- ! Boton para Ver reportes  -->
-          <p>Ver <strong><a href="reportes-event">reportes</a></strong></p>
+
         </ion-card-content>
       </ion-card>
     </ion-col>

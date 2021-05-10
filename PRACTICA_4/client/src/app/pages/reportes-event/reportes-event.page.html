@@ -5,11 +5,12 @@
 </ion-header>
 
 <ion-content>
-  <h1>Listado de Reportes</h1>
+
+  <h1>Listado de Reportes Asistencia</h1>
   <ion-button (click)="actualizar()">
     <ion-icon name="refresh-outline"></ion-icon>
   </ion-button>
-  <div text-center>
+  <div justify-content-center align-items-center style="height: 100%">
     <h1 text-center>Carnet?</h1>
     <a href="re-individual">Enviar nuevo Reporte</a>
     <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
@@ -30,7 +31,7 @@
         <ion-label>{{ item.nombreEvento }}</ion-label>
         <ion-label>{{ item.idEvento }}</ion-label>
         <ion-thumbnail slot="start">
-          <ion-img [src]="item.base64"></ion-img>
+          <ion-img style="width: 100px; height: 100px;" [src]="item.base64"></ion-img>
         </ion-thumbnail>
         <ion-label>{{ item.fecha }}</ion-label>
         <ion-label>{{ item.servidor }}</ion-label>
@@ -42,4 +43,5 @@
       </ion-item>
     </ion-list>
   </div>
+
 </ion-content>
