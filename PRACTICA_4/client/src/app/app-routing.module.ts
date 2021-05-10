@@ -24,7 +24,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/re-individual/re-individual.module').then( m => m.ReIndividualPageModule)
   },
   {
-    path: 'reportes-event',
+    path: 'event-reportes',
     loadChildren: () => import('./pages/reportes-event/reportes-event.module').then( m => m.ReportesEventPageModule)
   },
 ];
