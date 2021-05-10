@@ -57,6 +57,8 @@ function verReporte(me, callback){
 
 function crearAsistencia(carnet, nombre, nombreEvento,
 		idEvento, extencion, base64, callback){
+	// Cambio base64
+	base64 = base64.replace("data:image/jpeg;base64,","")
 	var req = new messages.Asistencia();
 	req.setCarnet(carnet)
 	req.setNombre(nombre)
