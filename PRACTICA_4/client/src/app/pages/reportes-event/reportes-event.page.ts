@@ -31,10 +31,12 @@ export class ReportesEventPage implements OnInit {
       header: 'Ingreso de reportes de practicantes',
       message: `Carnet <strong>${datos['carnet']}</strong><hr>
                 Nombre <strong>${datos['nombre']}</strong><hr>
-                Curso <strong>${datos['curso']}</strong><hr>
+                Nombre Evento <strong>${datos['nombreEvento']}</strong><hr>
+                idEvento <strong>${datos['idEvento']}</strong><hr>
                 Procesado por <strong>${datos['servidor']}</strong><hr>
                 Fecha <strong>${datos['fecha']}</strong><hr>
-                Cuerpo del Reporte <strong>${datos['cuerpo']}</strong><hr>
+                Foto <ion-img style="width: 100px; height: 100px;" [src]="${datos['base64']}"></ion-img><hr>
+             
                 Solicitud atendida por el servidor <strong>\"${datos['servidor']}\"</strong>`,
       buttons: ['OK']
     });
