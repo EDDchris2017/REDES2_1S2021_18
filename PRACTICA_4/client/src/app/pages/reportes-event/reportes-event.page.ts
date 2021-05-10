@@ -9,6 +9,7 @@ import { ReporteService } from '../../services/reporte.service'
 })
 export class ReportesEventPage implements OnInit {
   items;
+  isEvento: number = 0;
 
   constructor(private reporteServices: ReporteService,
     public toastController: ToastController,
@@ -63,23 +64,36 @@ export class ReportesEventPage implements OnInit {
   }
 
   async getItems(ev) {
-
+    
     //TODO: agrego valor a la busqueda
     var val = ev.target.value;
-    console.log(val)
+    console.log('evento es->' + this.isEvento +' Valor->' +val)
 
+    if(this.isEvento == 0){ //* Filtro por carnet
     //TODO: filstro la informacion que lleva la base de datos
     if (val && val.trim() != '') {
       this.items = this.items.filter((item) => {
         console.log(item['carnet'])
-        return (item['carnet'].toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (item['carnet'].toString().toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
       console.log('paso aqui alguna vez')
     } else {
       //TODO: Al no tener nada la base de datos, reinicio la lista
       this.initializeItems();
     }
-
+  }else { //* Filtro por ID evento
+    //TODO: filstro la informacion que lleva la base de datos
+    if (val && val.trim() != '') {
+      this.items = this.items.filter((item) => {
+        console.log(item['idEvento'])
+        return (item['idEvento'].toString().toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+      console.log('paso aqui alguna vez')
+    } else {
+      //TODO: Al no tener nada la base de datos, reinicio la lista
+      this.initializeItems();
+    }
+  }
   }
 
   getReportes() {
@@ -91,5 +105,12 @@ export class ReportesEventPage implements OnInit {
     );
   }
 
+  evento(event : any){
+    if(this.isEvento == 0){
+      this.isEvento = 1;
+    } else {
+      this.isEvento = 0;
+    }
+  }
 
 }

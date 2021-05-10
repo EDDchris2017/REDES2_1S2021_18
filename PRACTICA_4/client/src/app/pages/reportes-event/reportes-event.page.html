@@ -11,7 +11,14 @@
     <ion-icon name="refresh-outline"></ion-icon>
   </ion-button>
   <div justify-content-center align-items-center style="height: 100%">
-    <h1 text-center>Carnet?</h1>
+    <h1 text-center>Identificador</h1>
+    <ion-list>
+      <ion-item>
+        <ion-label>Evento</ion-label>
+        <ion-checkbox checked="false" (click)="evento($event)"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+    <hr>
     <a href="re-individual">Enviar nuevo Reporte</a>
     <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
     <ion-list>

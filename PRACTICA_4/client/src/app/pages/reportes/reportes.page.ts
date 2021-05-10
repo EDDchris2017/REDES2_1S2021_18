@@ -54,8 +54,8 @@ export class ReportesPage implements OnInit {
   }
 
   async initializeItems() {
-    this.items = this.pru.reverse();
-    /**
+    //this.items = this.pru.reverse();
+
     this.reporteServices.obtenerReportes().subscribe(
       res => {
         console.log(res);
@@ -64,19 +64,19 @@ export class ReportesPage implements OnInit {
       },
       err => console.log(err)
     );
-     */
+
   }
 
   async getItems(ev) {
 
     //TODO: agrego valor a la busqueda
     var val = ev.target.value;
-    console.log('entrada->'+val)
+    console.log('entrada->' + val)
 
     //TODO: filstro la informacion que lleva la base de datos
     if (val && val.trim() != '') {
       this.items = this.items.filter((item) => {
-        
+
         return (item['carnet'].toString().toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
       console.log('paso aqui alguna vez')
