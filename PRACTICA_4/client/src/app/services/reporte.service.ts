@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ReporteService {
-  private API_URL: string = 'http://18.116.53.157:4000/'
+  private API_URL: string = 'http://grupo18-api.tk:4000/'
 
   constructor(private http: HttpClient) { }
 
